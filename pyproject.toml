@@ -1,0 +1,22 @@
+[project]
+name = "ganerf"
+version = "0.1.0"
+
+dependencies=[
+    "nerfstudio>=0.3.2",
+    "clean-fid>=0.1.35",
+]
+
+[tool.setuptools.packages.find]
+include = ["ganerf*", "scripts*", "utils*", "generator*"]
+
+[project.entry-points.'nerfstudio.method_configs']
+ganerf = 'ganerf.ganerf_config:ganerf_method'
+
+[project.entry-points.'nerfstudio.dataparser_configs']
+scannetpp-data = 'ganerf.scannetpp_config:scannetpp_dataparser'
+
+[project.scripts]
+ns-train = "scripts.train:entrypoint"
+ns-eval = "scripts.eval:entrypoint"
+ns-render = "scripts.render:entrypoint"
